@@ -12,9 +12,8 @@
   "app": {
     "windows": [
       {
-        "title": "muze-player",
-        "width": 800,
-        "height": 600
+        "decorations": false,
+        "title": "muze-player"
       }
     ],
     "security": {

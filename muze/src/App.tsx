@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 import axios from 'axios';
+import { getCurrentWindow } from "@tauri-apps/api/window"; // appWindow deprecated
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -12,6 +13,10 @@ function App() {
   const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
   const redirect_uri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
   console.log(redirect_uri);
+
+  // appWindow
+
+  const appWindow = getCurrentWindow();
 
   // requesting token
   async function getToken(code: String) {
@@ -80,6 +85,26 @@ function App() {
   
 
   return (
+    <body>
+
+    <div data-tauri-drag-region className="titlebar">
+      <button className="titlebar-button" id="titlebar-minimize" onClick={() => appWindow.minimize()}>
+        <img
+          src="https://api.iconify.design/mdi:window-minimize.svg"
+          alt="minimize"
+        />
+      </button>
+      <button className="titlebar-button" id="titlebar-maximize" onClick={() => appWindow.maximize()}>
+        <img
+          src="https://api.iconify.design/mdi:window-maximize.svg"
+          alt="maximize"
+        />
+      </button>
+      <button className="titlebar-button" id="titlebar-close" onClick={() => appWindow.close()}>
+        <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+      </button>
+    </div>
+
     <div className="app">
       { !isLoggedIn ? (
         <div className="loginPage">
@@ -118,6 +143,7 @@ function App() {
         </div>
       )}
     </div>
+    </body>
   );
 }
 
