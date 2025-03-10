@@ -5,7 +5,6 @@ import axios from 'axios';
 import { getCurrentWindow } from "@tauri-apps/api/window"; // appWindow deprecated
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -15,7 +14,6 @@ function App() {
   console.log(redirect_uri);
 
   // appWindow
-
   const appWindow = getCurrentWindow();
 
   // requesting token
@@ -46,6 +44,11 @@ function App() {
     catch(error) {
       console.log(error);
     }
+  }
+
+  function contribute() {
+    let url = "https://github.com/Jeffwngl/Muze-Player";
+    window.open(url);
   }
 
   // authorizes user
@@ -88,21 +91,27 @@ function App() {
     <body>
 
     <div data-tauri-drag-region className="titlebar">
-      <button className="titlebar-button" id="titlebar-minimize" onClick={() => appWindow.minimize()}>
-        <img
-          src="https://api.iconify.design/mdi:window-minimize.svg"
-          alt="minimize"
-        />
-      </button>
-      <button className="titlebar-button" id="titlebar-maximize" onClick={() => appWindow.maximize()}>
-        <img
-          src="https://api.iconify.design/mdi:window-maximize.svg"
-          alt="maximize"
-        />
-      </button>
-      <button className="titlebar-button" id="titlebar-close" onClick={() => appWindow.close()}>
-        <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
-      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5" width="20px" height="20px">
+        <path fillRule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clipRule="evenodd" />
+      </svg>
+
+      <div className="buttons">
+        <button className="titlebar-button" id="titlebar-minimize" onClick={() => appWindow.minimize()}>
+          <img
+            src="https://api.iconify.design/mdi:window-minimize.svg"
+            alt="minimize"
+          />
+        </button>
+        <button className="titlebar-button" id="titlebar-maximize" onClick={() => appWindow.maximize()}>
+          <img
+            src="https://api.iconify.design/mdi:window-maximize.svg"
+            alt="maximize"
+          />
+        </button>
+        <button className="titlebar-button" id="titlebar-close" onClick={() => appWindow.close()}>
+          <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+        </button>
+      </div>
     </div>
 
     <div className="app">
@@ -115,7 +124,7 @@ function App() {
                 <p className="subHeader">Login With Spotify</p>
               </div>
             </button>
-            <button>
+            <button className="contribute" onClick={contribute}>
               <img className="image" src="src\images\collab.png" alt="GITHUB"></img>
               <div className="wrapper">
                 <p className="subHeader">Contribute</p>
