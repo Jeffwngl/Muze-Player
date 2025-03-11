@@ -51,6 +51,11 @@ function App() {
     window.open(url);
   }
 
+  function releases() {
+    let url = "https://github.com/Jeffwngl/Muze-Player/releases";
+    window.open(url);
+  }
+
   // authorizes user
   async function handleLogin() {
     var url = new URL('https://accounts.spotify.com/authorize?');
@@ -95,6 +100,8 @@ function App() {
         <path fillRule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clipRule="evenodd" />
       </svg>
 
+      <p className="titleName">muze player</p>
+
       <div className="buttons">
         <button className="titlebar-button" id="titlebar-minimize" onClick={() => appWindow.minimize()}>
           <img
@@ -130,7 +137,7 @@ function App() {
                 <p className="subHeader">Contribute</p>
               </div>
             </button>
-            <button>
+            <button onClick={releases}>
               <img className="image" src="src\images\settings.png" alt="VER"></img>
               <div className="wrapper">
                 <p className="subHeader">Version Info</p>
@@ -140,14 +147,14 @@ function App() {
         </div>
       ) : (
         <div className="dashboard">
+          <p>To use Muze player, simply click on the controls you need from the list above
+          and drag and position them on your window to your liking.</p>
           <h3>Controls</h3>
           <div className="controls">
             <button>// Add Volume Control_</button>
             <button>// Add Playback Control_</button>
             <button>// Add Queue Control_</button>
           </div>
-          <p>To use Muze player, simply click on the controls you need from the list above
-             and drag and position them on your window to your liking.</p>
           <button>Contribute</button>
         </div>
       )}
